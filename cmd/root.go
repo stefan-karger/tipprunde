@@ -6,12 +6,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-
-
 var rootCmd = &cobra.Command{
 	Use:   "tipprunde",
 	Short: "Kurzbeschreibung",
-	Long: `Lange Beschreibung.`,
+	Long:  `Lange Beschreibung.`,
 	// Run: func(cmd *cobra.Command, args []string) { },
 }
 
@@ -21,5 +19,3 @@ func Execute() {
 		os.Exit(1)
 	}
 }
-
-
