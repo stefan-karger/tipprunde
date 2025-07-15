@@ -7,11 +7,9 @@ import (
 	"time"
 )
 
-// GetURLContent fetches content from a given URL and returns an io.ReadCloser.
-// It handles basic HTTP GET requests.
 func GetURLContent(url string) (io.ReadCloser, error) {
 	client := &http.Client{
-		Timeout: 30 * time.Second, // Set a timeout
+		Timeout: 30 * time.Second,
 	}
 
 	req, err := http.NewRequest("GET", url, nil)
@@ -19,8 +17,6 @@ func GetURLContent(url string) (io.ReadCloser, error) {
 		return nil, fmt.Errorf("failed to create request: %w", err)
 	}
 
-	// Important: Add a User-Agent header to mimic a real browser,
-	// as some sites might block requests without it.
 	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
 
 	resp, err := client.Do(req)
@@ -29,7 +25,7 @@ func GetURLContent(url string) (io.ReadCloser, error) {
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		resp.Body.Close() // Close the body if status is not OK
+		resp.Body.Close()
 		return nil, fmt.Errorf("HTTP request failed with status: %s", resp.Status)
 	}
 
