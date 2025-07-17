@@ -19,3 +19,8 @@ func Execute() {
 		os.Exit(1)
 	}
 }
+
+func init() {
+	rootCmd.AddCommand(marktwertCmd)
+	rootCmd.AddCommand(ergebnisseCmd)
+}
